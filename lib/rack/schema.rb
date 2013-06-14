@@ -11,16 +11,15 @@ module Rack
 
       @handler   = handler
       @handler ||= proc { |errors, env, (status, headers, body)|
-        raise ValidationError.new({ errors: errors, body: body }) if errors.any?
+        json = ''
+        body.each { |s| json.concat s }
+        raise ValidationError.new({ errors: errors, body: json }) if errors.any?
       }
 
       @options = {
-        cache_schemas:    true,
         validate_schemas: true,
         swallow_links:    false
       }.merge(options)
-
-      JSON::Validator.cache_schemas = @options[:cache_schemas]
     end
 
     def call(env)
@@ -41,11 +40,13 @@ module Rack
     private
 
     def at_anchor(body, anchor)
-      return body if anchor.nil? || anchor == '#' || anchor == '#/'
-      json = JSON.parse(body)
+      flat = ''
+      body.each { |s| flat.concat s }
+
+      return flat if anchor.nil? || anchor == '#' || anchor == '#/'
 
       fragments = anchor.sub(/\A#\//, '').split('/')
-      fragments.reduce JSON.parse(body) do |value, fragment|
+      fragments.reduce JSON.parse(flat) do |value, fragment|
         case value
         when Hash  then value.fetch(fragment, nil)
         when Array then value.fetch(fragment.to_i, nil)

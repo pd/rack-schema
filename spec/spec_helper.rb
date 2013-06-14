@@ -42,7 +42,8 @@ module SpecHelpers
 
   module EchoApp
     def self.call(env)
-      [env['echo.status'], env['echo.headers'], env['echo.body']]
+      body = [env['echo.body']] # body should respond to :each
+      [env['echo.status'], env['echo.headers'], body]
     end
   end
 end
