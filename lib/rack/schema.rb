@@ -1,6 +1,7 @@
 require "rack/schema/version"
 require "json-schema"
 require "link_header"
+require "multi_json"
 
 module Rack
   class Schema
@@ -46,7 +47,7 @@ module Rack
       return flat if anchor.nil? || anchor == '#' || anchor == '#/'
 
       fragments = anchor.sub(/\A#\//, '').split('/')
-      fragments.reduce JSON.parse(flat) do |value, fragment|
+      fragments.reduce MultiJson.load(flat) do |value, fragment|
         case value
         when Hash  then value.fetch(fragment, nil)
         when Array then value.fetch(fragment.to_i, nil)

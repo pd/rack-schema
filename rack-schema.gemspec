@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kyle Hargraves"]
   spec.email         = ["pd@krh.me"]
   spec.description   = %q{Validate rack responses against schema named in the Link header}
-  spec.summary       = %q{Don't use this in prod kids.}
-  spec.homepage      = ""
+  spec.summary       = %q{Allows you to strictly validate each of your application's API responses against a declared JSON schema.}
+  spec.homepage      = "http://github.com/pd/rack-schema"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -19,10 +19,12 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rack"
+  spec.add_dependency "multi_json"
   spec.add_dependency "json-schema"
   spec.add_dependency "link_header"
 
   spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "oj"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rack-test"
   spec.add_development_dependency "rspec"

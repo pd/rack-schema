@@ -21,7 +21,7 @@ describe Rack::Schema do
       echo headers, {'name' => 'foo'}
 
       expect(last_response.headers).to have_key('Link')
-      expect(last_response.body).to eql({'name' => 'foo'}.to_json)
+      expect(last_response.body).to eql(MultiJson.dump({'name' => 'foo'}))
     end
   end
 

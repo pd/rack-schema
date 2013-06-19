@@ -3,16 +3,21 @@ require 'bundler/setup'
 require 'simplecov'
 SimpleCov.start
 
-require 'rack'
 require 'rspec'
 require 'rack/test'
 require 'rack/schema'
 require 'pry'
 
+# `json' needs to be here because simplecov assumes that if
+# ::JSON is defined, it means we have ruby's JSON loaded; otherwise,
+# they use MultiJson. silly.
+require "oj"
+require "json"
+
 module SpecHelpers
   def echo(headers, body, status = 200)
     env = {
-      'echo.body' => body.to_json,
+      'echo.body' => MultiJson.dump(body),
       'echo.headers' => headers,
       'echo.status' => status
     }
