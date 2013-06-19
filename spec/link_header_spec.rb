@@ -196,11 +196,11 @@ describe Rack::Schema, 'URIs, anchors, collections oh my!' do
     before do
       headers['Link'] = [described_by(schema_uri('response'), '#'),
                          described_by(schema_uri('widget'),   '#/widgets', :collection),
-                         described_by(schema_uri('auction'),  '#/auction')].join(', ')
+                         described_by(schema_uri('auction'),  '#/auction')].join(", ")
     end
 
     let(:body) do
-      { 'links' => [{'rel' => 'self'}],
+      { 'links'   => [{'rel' => 'self'}],
         'widgets' => [{'name' => 'foo'}],
         'auction' => {'bids' => 10, 'price' => 100}
       }
