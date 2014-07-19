@@ -6,13 +6,8 @@ SimpleCov.start
 require 'rspec'
 require 'rack/test'
 require 'rack/schema'
-require 'pry'
-
-# `json' needs to be here because simplecov assumes that if
-# ::JSON is defined, it means we have ruby's JSON loaded; otherwise,
-# they use MultiJson. silly.
-require "oj"
 require "json"
+require 'pry'
 
 module SpecHelpers
   def echo(headers, body, status = 200)

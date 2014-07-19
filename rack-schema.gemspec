@@ -18,16 +18,16 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rack"
-  spec.add_dependency "multi_json"
-  spec.add_dependency "json-schema"
-  spec.add_dependency "link_header"
+  spec.add_dependency "rack", "~> 1.5"
+  spec.add_dependency "multi_json",  "~> 1.10"
+  spec.add_dependency "json-schema", "~> 2.0"
+  spec.add_dependency "link_header", "~> 0.0.8"
 
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "oj"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rack-test"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "pry"
+  spec.add_development_dependency "bundler", "~> 1.6"
+  spec.add_development_dependency "json", "> 0"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rack-test", "~> 0.6"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "simplecov", "~> 0.7.0"
+  spec.add_development_dependency "pry", "~> 0.10"
 end
