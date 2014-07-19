@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/pd/rack-schema.svg?branch=master)](https://travis-ci.org/pd/rack-schema)
 [![Dependency Status](https://gemnasium.com/pd/rack-schema.svg)](https://gemnasium.com/pd/rack-schema)
 [![Code Climate](https://codeclimate.com/github/pd/rack-schema.png)](https://codeclimate.com/github/pd/rack-schema)
-[![Coverage Status](https://coveralls.io/repos/pd/rack-schema/badge.png)](https://coveralls.io/r/pd/rack-schema)
+[![Coverage Status](https://img.shields.io/coveralls/pd/rack-schema.svg)](https://coveralls.io/r/pd/rack-schema?branch=master)
 
 Validate your application's responses against [JSON Schemas][json-schema].
 
