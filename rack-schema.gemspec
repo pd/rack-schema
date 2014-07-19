@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rack", "~> 1.5"
-  spec.add_dependency "multi_json",  "~> 1.10"
+  spec.add_dependency "rack", "~> 1.0"
+  spec.add_dependency "multi_json",  "~> 1.0"
   spec.add_dependency "json-schema", "~> 2.0"
   spec.add_dependency "link_header", "~> 0.0.8"
 
