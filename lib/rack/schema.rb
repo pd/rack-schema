@@ -72,7 +72,7 @@ module Rack
       return flat if anchor.nil? || anchor == '#' || anchor == '#/'
 
       fragments = anchor.sub(/\A#\//, '').split('/')
-      fragments.reduce MultiJson.load(flat) do |value, fragment|
+      fragments.reduce MultiJson.decode(flat) do |value, fragment|
         case value
         when Hash  then value.fetch(fragment, nil)
         when Array then value.fetch(fragment.to_i, nil)
