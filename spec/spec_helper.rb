@@ -1,7 +1,16 @@
 require 'bundler/setup'
 
 require 'simplecov'
-SimpleCov.start
+require 'coveralls'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  Coveralls::SimpleCov::Formatter,
+  SimpleCov::Formatter::HTMLFormatter,
+]
+
+SimpleCov.start do
+  add_filter "/spec/"
+end
 
 require 'rspec'
 require 'rack/test'

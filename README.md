@@ -1,5 +1,11 @@
 # Rack::Schema
 
+[![Gem Version](https://badge.fury.io/rb/rack-schema.svg)](http://badge.fury.io/rb/rack-schema)
+[![Build Status](https://travis-ci.org/pd/rack-schema.svg?branch=master)](https://travis-ci.org/pd/rack-schema)
+[![Dependency Status](https://gemnasium.com/pd/rack-schema.svg)](https://gemnasium.com/pd/rack-schema)
+[![Code Climate](https://codeclimate.com/github/pd/rack-schema.png)](https://codeclimate.com/github/pd/rack-schema)
+[![Coverage Status](https://coveralls.io/repos/pd/rack-schema/badge.png)](https://coveralls.io/r/pd/rack-schema)
+
 Validate your application's responses against [JSON Schemas][json-schema].
 
 ## Installation
@@ -65,6 +71,8 @@ all be used to validate the response:
           <http://example.com/schemas/score>; rel="describedby"; anchor="#/score"
 
 ## Configuration
+
+### Validate Schemas
 By default, `rack-schema` will also instruct the validator to validate
 your schema itself *as* a schema. To disable that behavior:
 
@@ -72,9 +80,10 @@ your schema itself *as* a schema. To disable that behavior:
 use Rack::Schema, validate_schemas: false
 ~~~~
 
+### Swallow Links
 If you are running the `rack-schema` response validator in a
 production environment -- which you probably *shouldn't* be doing --
-you don't want to actually expose the `describedby` link header
+and you don't want to actually expose the `describedby` link header
 entries to the world, you can tell `rack-schema` to remove them from
 the responses after using them:
 
@@ -84,6 +93,18 @@ use Rack::Schema, swallow_links: true
 
 With `swallow_links` on, only the *describedby* links will be removed;
 your pagination or similar links will not be disturbed.
+
+### Error Handler
+By default, `rack-schema` will raise a `ValidationError` if it encounters
+any errors in your response JSON. If that's not your bag, you can define
+a different error handler by providing a block:
+
+~~~ruby
+use Rack::Schema do |errors, env, (status, headers, body)|
+  # Preferably, use a less useless error message.
+  my_logger.warn("JSON response did not match schema!")
+end
+~~~
 
 
 ## Potential Features?
